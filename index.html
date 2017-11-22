@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Exercice 3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  </head>
+  <body>
+    <form ng-app="myApp" name="myForm" ng-controller="myCtrl">
+      Name: <input type="name" name="myName" ng-model="text" ng-pattern="regexName" required/>
+        <div style="color: red" ng-show="myForm.myName.$invalid && !myForm.myName.$error.required">mauvaise saisi du Nom</div>
+      <div style="color: red" ng-show="myForm.myName.$error.required">Aucun Nom saisi</div>
+      <div style="color: green" ng-show="myForm.myName.$valid">Correct</div>
+      Email:<input type="email" name="myAddress" ng-model="email" ng-pattern="regexEmail" required>
+      <div style="color: red" ng-show="myForm.myAddress.$invalid && !myForm.myAddress.$error.required">Adresse mail est incorrect</div>
+      <div style="color: red" ng-show="myForm.myAddress.$error.required">Saisir une adresse mail</div>
+      <div style="color: green" ng-show="myForm.myAddress.$valid">Correct</div>
+      Sujet: <input type="object" name="myObject" ng-model="text2" ng-pattern="regexObject"required>
+      <div style="color: red" ng-show="myForm.myObject.$invalid && !myForm.myObject.$error.required">Saisir  un objet!</div>
+      <div style="color: red" ng-show="myForm.myObject.$error.required">Aucun objet saisi</div>
+      <div style="color: green" ng-show="myForm.myObject.$valid">Correct</div>
+      Mail: <textarea type="mail" name="myMail" ng-model="text3" ng-pattern="regexMail" required> </textarea>
+      <div style="color: red" ng-show="myForm.myMail.$invalid && !myForm.myMail.$error.required">Saisir du texte!</div>
+      <div style="color: red" ng-show="myForm.myMail.$error.required">Pas de texte saisi</div>
+      <div style="color: green" ng-show="myForm.myMail.$valid">Correct</div>
+    </form>
+  </body>
+  <script>
+  var app = angular.module('myApp', []);
+  app.controller('myCtrl', function($scope) {
+    $scope.regexName = "[a-zA-Z]{2,15}";
+    $scope.regexEmail = "[a-z0-9._ %+-]+@[a-z0-9.-]+.[a-z]{2,4}"
+    $scope.regexObject = "[a-zA-Z0-9._ +-:]{8,50}"
+    $scope.regexMail = "[a-zA-Z0-9._ %+-]{8,300}"
+  });
+  </script>
+</html>
